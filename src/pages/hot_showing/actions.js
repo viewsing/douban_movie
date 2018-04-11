@@ -1,30 +1,59 @@
-import { FETCH_STARTED, FETCH_SUCCESS, FETCH_ERROR } from './actionTypes.js';
+import { FETCH_THEATER_STARTED, FETCH_THEATER_SUCCESS, FETCH_THEATER_ERROR,
+         FETCH_COMING_STARTED, FETCH_COMING_SUCCESS, FETCH_COMING_ERROR } from './actionTypes.js';
 import axios from 'axios';
 
-export const fetchMoviesStarted = () => ({
-    type: FETCH_STARTED
+export const fetchTheaterStarted = () => ({
+    type: FETCH_THEATER_STARTED
 })
 
-export const fetchMoviesSuccess = (result) => ({
-    type: FETCH_SUCCESS,
+export const fetchTheaterSuccess = (result) => ({
+    type: FETCH_THEATER_SUCCESS,
     payload: result
 })
 
-export const fetchMoviesError = (error) => ({
-    type:FETCH_ERROR,
+export const fetchTheaterError = (error) => ({
+    type: FETCH_THEATER_ERROR,
     payload: error
 })
 
-export const fetchMovies = () => {
+export const fetchTheaterMovies = () => {
     return (dispatch) => {
         const apiUrl = 'movie/in_theaters';
 
-        dispatch(fetchMoviesStarted);
+        dispatch(fetchTheaterStarted);
 
         axios(apiUrl).then(response=>{
-            dispatch(fetchMoviesSuccess(response.data));
+            dispatch(fetchTheaterSuccess(response.data));
         }).catch(response=>{
-            dispatch(fetchMoviesError(response.error));
+            dispatch(fetchTheaterError(response.error));
+        })
+    }
+}
+
+export const fetchComingStarted = () => ({
+    type: FETCH_COMING_STARTED
+})
+
+export const fetchComingSuccess = (result) => ({
+    type: FETCH_COMING_SUCCESS,
+    payload: result
+})
+
+export const fetchComingError = (error) => ({
+    type: FETCH_COMING_ERROR,
+    payload: error
+})
+
+export const fetchComingMovies = () => {
+    return (dispatch) => {
+        const apiUrl = 'movie/coming_soon';
+
+        dispatch(fetchComingStarted);
+
+        axios(apiUrl).then(response=>{
+            dispatch(fetchComingSuccess(response.data));
+        }).catch(response=>{
+            dispatch(fetchComingError(response.error));
         })
     }
 }

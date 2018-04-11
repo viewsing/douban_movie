@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import InTheater from './InTheater.js';
-import Coming from './Coming.js';
+import ComingSoon from './ComingSoon.js';
 import Swiper from 'swiper';
 import 'swiper/dist/css/swiper.css';
 
@@ -23,6 +23,9 @@ class Container extends Component {
             }
         });
     }
+    shouldComponentUpdate(nextProps, nextState) {
+        return this.state.activeIndex !== nextState.activeIndex;
+    }
     tabToHotShowing() {
         this.mySwiper.slidePrev();
     }
@@ -42,10 +45,10 @@ class Container extends Component {
                 <div className="swiper-container">
                     <div className="swiper-wrapper">
                         <div className="swiper-slide">
-                            <InTheater/>
+                            <InTheater />
                         </div>
                         <div className="swiper-slide">
-                            <Coming/>
+                            { activeIndex === 1 ? <ComingSoon /> : '' }
                         </div>
                     </div>
                 </div>
