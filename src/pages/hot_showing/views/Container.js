@@ -32,6 +32,7 @@ class Container extends Component {
         });
     }
     Ref(ref) {
+        //ComingSoon实例，在swipe回掉函数里控制，在第一次进入时加载数据
         this.ComingSoon = ref;
     }
     shouldComponentUpdate(nextProps, nextState) {

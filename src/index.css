@@ -1,11 +1,60 @@
-html,
-body,
-#root,
-.appContent {
+/* 高度设置 */
+html {
+    height: 100%;
     word-break: break-all;
+}
+body {
+    height: calc(100% - 2.5rem);
+}
+#root {
+    height: 100%;
+}
+#searchBar {
+    position: fixed;
     width: 100%;
+    height: 1.2rem;
+    z-index: 2;
+    background-color: #fff;
+    top: 0;
 }
 
+#searchBar .searchPanel {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: .2rem .3rem 0;
+    background-color: #f5f5f5;
+    font-size: .4rem;
+    line-height: 1rem;
+    border-radius: .1rem;
+    color: #9d9d9d;
+}
+
+#footer {
+    position: fixed;
+    z-index: 9999;
+    background-color: #fff;
+    border-top: 1px solid #e6e6e6;
+    bottom: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+}
+
+#footer .tabItem {
+    text-decoration: none;
+    display: inline-block;
+    padding: .1rem .4rem;
+    text-align: center;
+}
+
+#footer .tabItem-icon {
+    display: block;
+    width: .75rem;
+    height: .75rem;
+}
+
+/* 全局字体大小设置 */
 * {
     font-size: 12px;
 }
@@ -24,8 +73,8 @@ body,
     height: 100%;
 }
 
+/* 遮罩设置 */
 .loading {
-    /* margin: 50% auto; */
     position: absolute;
     top: 50%;
     left: 50%;
@@ -36,41 +85,28 @@ body,
     background: url(./static/loading.gif) center / 100% no-repeat;
 }
 
+/* 星星评分 */
 .star_score {
     display: inline-block;
     width: .4rem;
     height: .4rem;
 }
-
-#searchBar {
-    position: fixed;
-    width: 100%;
-    z-index: 2;
-    background-color: #fff;
-    top: 0;
+/* app主体设置 */
+.appContent {
+    height: 100%;
+}
+.appBody {
+    margin-top: 1.2rem;
+    height: 100%;
 }
 
-#searchBar .searchPanel {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: .2rem .3rem 0;
-    background-color: #f5f5f5;
-    font-size: .4rem;
-    line-height: 1rem;
-    border-radius: .1rem;
-    color: #9d9d9d;
-}
+/* 具体页面设置 */
 
 #hotShowing-container {
-    margin-top: 2.46rem;
-    padding-bottom: 1.3rem;
+    height: 100%;
 }
 #hotShowing-container .container-heading {
-    position: fixed;
     width: 100%;
-    top: 1.2rem;
-    z-index: 2;
     background-color: #fff;
 }
 #hotShowing-container .heading-item {
@@ -86,15 +122,18 @@ body,
 }
 #hotShowing-container .swiper-container {
     width: 100%;
+    height: calc(100% - 1.2rem);
 }
 
 #InTheater {
     position: relative;
-    min-height: 100px;
+    height: 100%;
+    overflow-y: scroll;
 }
 #ComingSoon {
     position: relative;
-    min-height: 100px;
+    height: 100%;
+    overflow-y: scroll;
 }
 
 .movieListItem {
@@ -135,28 +174,4 @@ body,
     padding: .1rem .2rem;
     border-radius: .1rem;
     text-decoration: none;
-}
-
-#footer {
-    position: fixed;
-    z-index: 2;
-    background-color: #fff;
-    border-top: 1px solid #e6e6e6;
-    bottom: 0;
-    width: 100%;
-    display: flex;
-    justify-content: space-around;
-}
-
-#footer .tabItem {
-    text-decoration: none;
-    display: inline-block;
-    padding: .1rem .4rem;
-    text-align: center;
-}
-
-#footer .tabItem-icon {
-    display: block;
-    width: .75rem;
-    height: .75rem;
 }

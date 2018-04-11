@@ -7,7 +7,7 @@ function App (props) {
     return (
         <div className="appContent">
             <SearchBar />
-            <section>{props.children}</section>
+            <section className="appBody">{props.children}</section>
             <TabBar/>
         </div>
     )

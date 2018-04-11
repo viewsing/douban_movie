@@ -4,8 +4,18 @@ import { connect } from 'react-redux';
 import MovieListItem from './MovieListItem.js';
 
 class ComingSoon extends Component {
+    constructor(props) {
+        super(props);
+        this.getDom = this.getDom.bind(this);
+    }
     componentDidMount() {
         this.props.Ref(this);
+    }
+    componentDidUpdate() {
+        this.dom.scrollTop = 0;
+    }
+    getDom(ref) {
+        this.dom = ref;
     }
     fetchData() {
         this.props.getMovies();
@@ -13,7 +23,7 @@ class ComingSoon extends Component {
     render() {
         const { status, subjects } = this.props;
         return (
-            <section id="ComingSoon">
+            <section id="ComingSoon" ref={this.getDom}>
                 {
                     status === 'success' ?
                     subjects.map( function(subject) {

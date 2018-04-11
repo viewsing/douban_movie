@@ -5,13 +5,36 @@ import MovieListItem from './MovieListItem.js';
 import PropTypes from 'prop-types';
 
 class InTheater extends Component {
+    constructor(props) {
+        super(props);
+        this.getDom = this.getDom.bind(this);
+    }
     componentDidMount() {
         this.props.getMovies();
+        this.dom.addEventListener('scroll', this.throttle(this.scrollToBottom));
+    }
+    throttle(callback) {
+        let timer;
+        let throttleFunc = function(event, self) {
+            timer = setTimeout(function(){
+                callback.call(self, event);
+            }, 200);
+        }
+        return function(event) {
+            clearTimeout(timer);
+            throttleFunc(event, this);
+        }
+    }
+    getDom(ref) {
+        this.dom = ref;
+    }
+    scrollToBottom(event) {
+        console.log(window.scrollY);
     }
     render() {
         const { status, subjects } = this.props;
         return (
-            <section id="InTheater">
+            <section id="InTheater" ref={this.getDom}>
                 {
                     status === 'success' ?
                     subjects.map( function(subject) {
