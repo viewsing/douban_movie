@@ -1,7 +1,5 @@
 import axios from 'axios';
 
-const axiosInstance = axios.create();
-
 export default (url, options={}, noCache) => {
     let config = {
         method: 'get',
@@ -14,6 +12,7 @@ export default (url, options={}, noCache) => {
     //第一次是没有数据的，要请求
     if (!localData) {
         config = Object.assign({}, config, options);
+        const axiosInstance = axios.create();
         axiosInstance.interceptors.response.use(function (response) {
             sessionStorage.setItem( url, JSON.stringify(response.data) );
             return response.data;
