@@ -4,8 +4,9 @@ import { connect } from 'react-redux';
 import MovieListItem from './MovieListItem.js';
 
 class ComingSoon extends Component {
-    componentDidMount() {
-        this.props.getMovies();
+    componentWillReceiveProps(props) {
+        console.log(2);
+        // props.isActive && props.firstToComing && this.props.getMovies();
     }
     render() {
         const { status, subjects } = this.props;

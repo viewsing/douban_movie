@@ -10,6 +10,7 @@ class Container extends Component {
         this.state = {
             activeIndex: 0
         }
+        this.firstToComing = true;
         this.tabToComingSoon = this.tabToComingSoon.bind(this);
         this.tabToHotShowing = this.tabToHotShowing.bind(this);
     }
@@ -18,7 +19,13 @@ class Container extends Component {
             on:{   
                 slideChange: () => {
                     this.setState({ activeIndex: this.mySwiper.activeIndex });
+                    if (this.mySwiper.activeIndex === 0) {
+                        this.firstToComing = false;
+                    }
                     window.scrollTo(0,0);
+                },
+                slideNextTransitionEnd: () => {
+                    console.log(1);
                 }
             }
         });
@@ -48,7 +55,7 @@ class Container extends Component {
                             <InTheater />
                         </div>
                         <div className="swiper-slide">
-                            { activeIndex === 1 ? <ComingSoon /> : '' }
+                            <ComingSoon isActive={activeIndex === 1 ? true : false} firstToComing={this.firstToComing} />
                         </div>
                     </div>
                 </div>
