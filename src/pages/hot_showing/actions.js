@@ -1,6 +1,6 @@
 import { FETCH_THEATER_STARTED, FETCH_THEATER_SUCCESS, FETCH_THEATER_ERROR,
          FETCH_COMING_STARTED, FETCH_COMING_SUCCESS, FETCH_COMING_ERROR } from './actionTypes.js';
-import axios from 'axios';
+import myFetch from '../../utils/myFetch.js';
 
 export const fetchTheaterStarted = () => ({
     type: FETCH_THEATER_STARTED
@@ -22,8 +22,8 @@ export const fetchTheaterMovies = () => {
 
         dispatch(fetchTheaterStarted);
 
-        axios(apiUrl).then(response=>{
-            dispatch(fetchTheaterSuccess(response.data));
+        myFetch(apiUrl).then(data=>{
+            dispatch(fetchTheaterSuccess(data));
         }).catch(response=>{
             dispatch(fetchTheaterError(response.error));
         })
@@ -50,8 +50,8 @@ export const fetchComingMovies = () => {
 
         dispatch(fetchComingStarted);
 
-        axios(apiUrl).then(response=>{
-            dispatch(fetchComingSuccess(response.data));
+        myFetch(apiUrl).then(data=>{
+            dispatch(fetchComingSuccess(data));
         }).catch(response=>{
             dispatch(fetchComingError(response.error));
         })
