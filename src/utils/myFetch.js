@@ -1,5 +1,8 @@
 import axios from 'axios';
 
+/**
+ * 请求数据，在sessionStorage有数据时有限从storage获取
+ */
 export default (url, options={}, noCache) => {
     let config = {
         method: 'get',

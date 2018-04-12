@@ -3,6 +3,9 @@ import { fetchComingMovies } from '../actions.js';
 import { connect } from 'react-redux';
 import MovieListItem from './MovieListItem.js';
 
+/**
+ * 功能是控制即将上映页面的数据加载
+ */
 class ComingSoon extends Component {
     constructor(props) {
         super(props);

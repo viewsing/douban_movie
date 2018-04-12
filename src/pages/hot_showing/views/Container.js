@@ -4,6 +4,9 @@ import ComingSoon from './ComingSoon.js';
 import Swiper from 'swiper';
 import 'swiper/dist/css/swiper.css';
 
+/**
+ * 功能是控制tab切换，第一次切换至comingsoon，它才开始加载数据
+ */
 class Container extends Component {
     constructor(props) {
         super(props);

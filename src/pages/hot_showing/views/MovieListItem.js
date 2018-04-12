@@ -1,32 +1,9 @@
 import React from 'react';
-import Star from './Star.js';
+import Stars from './Stars.js';
 
-function getStars (starsStr) {
-    //返回的星星组件
-    const retStars = [];
-    //点亮星星数
-    const allStrNum = parseInt(starsStr[0]);
-    //总共五颗星
-    let totalNum = 5;
-    if (starsStr.length > 1) {
-        retStars.push(
-            <Star score="half" key="5" />
-        );
-        totalNum --;
-    }
-    for (let i=1; i <= totalNum; i++) {
-        if (i <= allStrNum) {
-            retStars.unshift(
-                <Star score="all" key={i} />
-            );
-        } else {
-            retStars.push(
-                <Star score="negtive" key={i} />
-            );
-        }
-    }
-    return retStars;
-}
+/**
+ * 功能是展示电影列表项
+ */
 
 function MovieListItem ({title, picUrl, directors, casts, collect_count, stars}) {
     const movieBuyColor = stars ? '#ff6e7e' : '#ffaf36';
@@ -36,9 +13,10 @@ function MovieListItem ({title, picUrl, directors, casts, collect_count, stars})
                 <img src={picUrl} alt="" />
             </div>      
             <div className="movieDesc">
+                
                 <h3 className="movieTitle">{title}</h3>
 
-                { stars ? <p className="movieScore">{getStars(stars)}</p> : ''}
+                { stars ? <Stars stars={stars} /> : ''}
 
                 <p className="movieDirector">导演:&nbsp;{
                     directors.map(function(director){
