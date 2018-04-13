@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import { fetchComingMovies } from '../actions.js';
 import { connect } from 'react-redux';
 import MovieList from './MovieList';
-import withLoading from './withLoading.js';
+import withLoading from '../../../utils/withLoading.js';
 import Throttle from '../../../utils/throttle.js';
 
 const LoadingMovieList = withLoading(MovieList);
