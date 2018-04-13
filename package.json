@@ -3,9 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "alloyfinger": "^0.1.13",
     "axios": "^0.18.0",
-    "css3transform": "^1.1.9",
     "prop-types": "^15.6.1",
     "react": "^16.3.1",
     "react-dom": "^16.3.1",

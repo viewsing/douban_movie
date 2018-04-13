@@ -4,4 +4,4 @@
 
 预览：
 
-![预览](http://t1.aixinxi.net/o_1cav68vke19ba189p7ld10ulsf9a.gif-j.jpg)
+![img](https://github.com/viewsing/douban_movie/blob/master/%E9%A2%84%E8%A7%88%E5%9B%BE/homepage.gif)
