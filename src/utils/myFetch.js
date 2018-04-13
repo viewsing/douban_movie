@@ -26,7 +26,11 @@ export default (url, options={}, noCache) => {
         return axiosInstance(config);
     //用已有数据创建一个promise
     } else {
-        return Promise.resolve(localData);
+        return new Promise(function(resolve, reject) {
+            setTimeout(function(){
+                resolve(localData);
+            }, 2000)
+        });
     }
 
 }

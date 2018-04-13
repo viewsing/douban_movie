@@ -68,9 +68,9 @@ body {
 }
 
 .loading-container {
-    position: absolute;
+    position: relative;
     width: 100%;
-    height: 100%;
+    height: 1.5rem;
 }
 
 /* 遮罩设置 */
@@ -83,6 +83,15 @@ body {
     height: 70px;
     border-radius: 35px;
     background: url(./static/loading.gif) center / 100% no-repeat;
+}
+
+/* 没有更多数据 */
+.noMoreData {
+    height: 1rem;
+    margin-top: -.5rem;
+    line-height: 1rem;
+    text-align: center;
+    color: #8a8a8a;
 }
 
 /* 星星评分 */

@@ -2,8 +2,9 @@ import { FETCH_THEATER_STARTED, FETCH_THEATER_SUCCESS, FETCH_THEATER_ERROR,
          FETCH_COMING_STARTED, FETCH_COMING_SUCCESS, FETCH_COMING_ERROR } from './actionTypes.js';
 import myFetch from '../../utils/myFetch.js';
 
-export const fetchTheaterStarted = () => ({
-    type: FETCH_THEATER_STARTED
+export const fetchTheaterStarted = (result) => ({
+    type: FETCH_THEATER_STARTED,
+    payload: result
 })
 
 export const fetchTheaterSuccess = (result) => ({
@@ -16,22 +17,28 @@ export const fetchTheaterError = (error) => ({
     payload: error
 })
 
-export const fetchTheaterMovies = () => {
+export const fetchTheaterMovies = (start, isFetchMore) => {
     return (dispatch) => {
-        const apiUrl = 'movie/in_theaters';
+        //分页参数
+        let queryStr = '';
+        if (start) {
+            queryStr = '?start=' + start;
+        }
+        const apiUrl = 'movie/in_theaters' + queryStr;
 
-        dispatch(fetchTheaterStarted);
+        dispatch(fetchTheaterStarted({isFetchMore}));
 
         myFetch(apiUrl).then(data=>{
-            dispatch(fetchTheaterSuccess(data));
+            dispatch(fetchTheaterSuccess({...data, isFetchMore: isFetchMore}));
         }).catch(response=>{
             dispatch(fetchTheaterError(response.error));
         })
     }
 }
 
-export const fetchComingStarted = () => ({
-    type: FETCH_COMING_STARTED
+export const fetchComingStarted = (result) => ({
+    type: FETCH_COMING_STARTED,
+    payload: result
 })
 
 export const fetchComingSuccess = (result) => ({
@@ -44,14 +51,19 @@ export const fetchComingError = (error) => ({
     payload: error
 })
 
-export const fetchComingMovies = () => {
+export const fetchComingMovies = (start, isFetchMore) => {
     return (dispatch) => {
-        const apiUrl = 'movie/coming_soon';
+        //分页参数
+        let queryStr = '';
+        if (start) {
+            queryStr = '?start=' + start;
+        }
+        const apiUrl = 'movie/coming_soon' + queryStr;
 
-        dispatch(fetchComingStarted);
+        dispatch(fetchComingStarted({isFetchMore}));
 
         myFetch(apiUrl).then(data=>{
-            dispatch(fetchComingSuccess(data));
+            dispatch(fetchComingSuccess({...data, isFetchMore: isFetchMore}));
         }).catch(response=>{
             dispatch(fetchComingError(response.error));
         })

@@ -1,9 +1,12 @@
 import React, {Component} from 'react';
 import { fetchTheaterMovies } from '../actions.js';
 import { connect } from 'react-redux';
-import MovieListItem from './MovieListItem.js';
+import MovieList from './MovieList';
+import withLoading from './withLoading.js';
 import Throttle from '../../../utils/throttle.js';
 import PropTypes from 'prop-types';
+
+const LoadingMovieList = withLoading(MovieList);
 
 /**
  * 功能是控制加载正在热映页面的数据加载
@@ -12,10 +15,8 @@ import PropTypes from 'prop-types';
 class InTheater extends Component {
     constructor(props) {
         super(props);
-        this.state = {
-            loadMore: false
-        }
-        this.scrollToBottom = Throttle(this.scrollToBottom).bind(this);
+        this.movieLists = [];
+        this.scrollToBottom = Throttle(this.scrollToBottom, 100, 200).bind(this);
         this.fetchMoreData = this.fetchMoreData.bind(this);
     }
     componentDidMount() {
@@ -23,8 +24,7 @@ class InTheater extends Component {
     }
     scrollToBottom(event) {
         const scrollTop = event.target.scrollTop;
-        const targetHeight = event.target.scrollHeight - event.target.clientHeight - 200;
-        console.log(scrollTop, targetHeight);
+        const targetHeight = (event.target.scrollHeight - event.target.clientHeight) * 4 / 5;
         if (scrollTop >= targetHeight) {
             this.fetchMoreData();
         }
@@ -32,24 +32,26 @@ class InTheater extends Component {
     fetchMoreData() {
         if (!this.fetching) {
             this.fetching = true;
-            this.setState({
-                loadMore: true
-            })
+            const start = this.start + this.count;
+            if (this.start < this.total) {
+                this.props.getMovies(start, true);
+            }
         }
     }
     render() {
-        const { status, subjects } = this.props;
+        const { status, movieLists, count, start, total, isFetchMore } = this.props;
+        //保存分页信息
+        this.count = count, this.start = start; this.total = total;
+        if (isFetchMore) {
+            this.fetching = false;
+        }
+
         return (
             <section id="InTheater" onScroll={this.scrollToBottom} >
                 {
-                    status === 'success' ?
-                    subjects.map( function(subject) {
-                        return <MovieListItem key={subject.id} directors={subject.directors} stars={subject.rating.stars} collect_count={subject.collect_count} casts={subject.casts} title={subject.title} picUrl={subject.images.small} />
-                    }) :
-                    <div className="loading"></div>
-                }
-                {
-                    this.state.loadMore ? <div style={{ position: 'relative', width: '100%', height: '1.5rem' }}><div className="loading"></div></div> : ''
+                    status !== 'init' ? movieLists.map( function(movieList, index) {
+                        return <LoadingMovieList key={index} subjects={movieList.subjects} status={movieList.status}/>
+                    }) : null
                 }
             </section>
         )
@@ -59,13 +61,17 @@ class InTheater extends Component {
 function mapStateToProps(state, ownProps) {
     return {
         status: state.hotShowing.inTheaters.status,
-        subjects: state.hotShowing.inTheaters.subjects
+        movieLists: state.hotShowing.inTheaters.movieLists,
+        count: state.hotShowing.inTheaters.count,
+        start: state.hotShowing.inTheaters.start,
+        total: state.hotShowing.inTheaters.total,
+        isFetchMore: state.hotShowing.isFetchMore
     }
 }
 
 function mapDispatchToProps(dispatch, ownProps) {
     return {
-        getMovies: ()=> dispatch(fetchTheaterMovies())
+        getMovies: (start, isFetchMore)=> dispatch(fetchTheaterMovies(start, isFetchMore))
     }
 }
 
