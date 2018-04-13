@@ -4,4 +4,4 @@
 
 预览：
 
-![预览](http://ww1.sinaimg.cn/mw690/8922edaegy1fqb5se7jjoj21h30o6abq.jpg)
+![预览](http://t1.aixinxi.net/o_1cav68vke19ba189p7ld10ulsf9a.gif-j.jpg)
