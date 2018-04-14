@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router';
 import { connect } from 'react-redux';
-import { tabToHot, tabToSearch } from '../actions.js';
 import hotIconActive from '../../../static/hot_showing_active.svg';
 import hotIcon from '../../../static/hot_showing.svg';
 import searchIconActive from '../../../static/search_movie_active.svg';
@@ -18,7 +17,7 @@ function TabItem ({ icon, text, url, active, changeTabStatus }) {
     //两种状态下的Icon
     const iconUrl = active ? Icon[icon + 'Active'] : Icon[icon];
     return (
-        <Link to={ '/' + url} className="tabItem" onClick={changeTabStatus} >
+        <Link to={ '/' + url} className="tabItem" >
 
             <span className="tabItem-icon" style={{
                 background: 'url('+ iconUrl +') center/100% no-repeat'
@@ -36,25 +35,8 @@ function mapStateToProps (state, ownProps) {
         active: state.tabStatus === ownProps.url,
         icon: ownProps.icon,
         text: ownProps.text,
-        url: ownProps.url
+        url: ownProps.url,
     }
 }
 
-function mapDispatchToProps (dispatch, ownProps) {
-    return {
-        changeTabStatus: () => {
-            switch (ownProps.url) {
-                case 'hot_showing':
-                    dispatch(tabToHot(ownProps.url));
-                    break;
-                case 'search_movie':
-                    dispatch(tabToSearch(ownProps.url));
-                    break;
-                default:
-                    break;
-            }
-        }
-    }
-}
-
-export default connect( mapStateToProps, mapDispatchToProps)(TabItem);
+export default connect( mapStateToProps, null)(TabItem);
