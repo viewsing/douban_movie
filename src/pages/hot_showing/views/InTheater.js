@@ -32,20 +32,19 @@ class InTheater extends Component {
     fetchMoreData() {
         if (!this.fetching) {
             this.fetching = true;
-            const start = this.start + this.count;
-            if (this.start < this.total) {
+            const start = this.props.start + this.props.count;
+            if (this.props.start < this.props.total) {
                 this.props.getMovies(start, true);
             }
         }
     }
     render() {
         const { status, movieLists, count, start, total, isFetchMore } = this.props;
-        //保存分页信息
-        this.count = count, this.start = start; this.total = total;
+        //标记加载更多结束
         if (isFetchMore) {
             this.fetching = false;
         }
-
+        
         return (
             <section id="InTheater" onScroll={this.scrollToBottom} >
                 {
