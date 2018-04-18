@@ -29,7 +29,7 @@ class InTheater extends Component {
         }
     }
     componentWillUnmount() {
-        this.props.leaveTheater(this.scrollTop);
+        this.props.leaveTheater(this.dom.scrollTop);
     }
     getDom(ref) {
         this.dom = ref;
@@ -51,9 +51,9 @@ class InTheater extends Component {
         }
     }
     render() {
-        const { status, movieLists, count, start, total, isFetchMore } = this.props;
+        const { status, movieLists, count, start, total, fetchDone } = this.props;
         //标记加载更多结束
-        if (isFetchMore) {
+        if (fetchDone) {
             this.fetching = false;
         }
         
@@ -76,7 +76,7 @@ function mapStateToProps(state, ownProps) {
         count: state.hotShowing.inTheaters.count,
         start: state.hotShowing.inTheaters.start,
         total: state.hotShowing.inTheaters.total,
-        isFetchMore: state.hotShowing.isFetchMore,
+        fetchDone: state.hotShowing.fetchDone,
         scrollTop: state.hotShowing.inTheaters.scrollTop
     }
 }

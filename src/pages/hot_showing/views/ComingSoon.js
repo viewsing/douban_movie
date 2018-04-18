@@ -22,7 +22,7 @@ class ComingSoon extends Component {
         this.props.Ref(this);
     }
     componentWillUnmount() {
-        this.props.leaveComing(this.scrollTop);
+        this.props.leaveComing(this.dom.scrollTop);
     }
     scrollToBottom(event) {
         this.scrollTop = event.target.scrollTop;
@@ -51,9 +51,9 @@ class ComingSoon extends Component {
         }
     }
     render() {
-        const { status, movieLists, count, start, total, isFetchMore } = this.props;
+        const { status, movieLists, count, start, total, fetchDone } = this.props;
         //标记加载更多结束
-        if (isFetchMore) {
+        if (fetchDone) {
             this.fetching = false;
         }
 
@@ -76,7 +76,7 @@ function mapStateToProps(state, ownProps) {
         count: state.hotShowing.comingSoon.count,
         start: state.hotShowing.comingSoon.start,
         total: state.hotShowing.comingSoon.total,
-        isFetchMore: state.hotShowing.isFetchMore,
+        fetchDone: state.hotShowing.fetchDone,
         scrollTop: state.hotShowing.comingSoon.scrollTop
     }
 }

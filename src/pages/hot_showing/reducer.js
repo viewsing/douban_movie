@@ -22,8 +22,9 @@ export default (state=initState, action) => {
             const newLists = [{status: 'loading', subjects: []}];
             return { 
                 ...state,
-                isFetchMore: action.payload.isFetchMore,
+                fetchDone: false,
                 inTheaters: {
+                    ...state.inTheaters,
                     status: 'loading',
                     movieLists: action.payload.isFetchMore ? oldLists.concat(newLists) : newLists 
                 }
@@ -35,9 +36,10 @@ export default (state=initState, action) => {
             const newLists = [{status: 'success', subjects: action.payload.subjects}]
             return { 
                 ...state,
+                fetchDone: true,
                 inTheaters: {
+                    ...state.inTheaters,
                     status: 'success',
-                    isFetchMore: action.payload.isFetchMore,
                     ... action.payload,
                     movieLists: action.payload.isFetchMore ? oldLists.concat(newLists) : newLists
                 }
@@ -46,7 +48,9 @@ export default (state=initState, action) => {
         case FETCH_THEATER_ERROR: {
             return {
                 ...state,
+                fetchDone: true,
                 inTheaters: {
+                    ...state.inTheaters,
                     status: 'error'
                 }
             }
@@ -56,8 +60,9 @@ export default (state=initState, action) => {
             const newLists = [{status: 'loading', subjects: []}];
             return { 
                 ...state,
-                isFetchMore: action.payload.isFetchMore,
+                fetchDone: false,
                 comingSoon: {
+                    ...state.comingSoon,
                     status: 'loading',
                     movieLists: action.payload.isFetchMore ? oldLists.concat(newLists) : newLists 
                 }
@@ -69,8 +74,9 @@ export default (state=initState, action) => {
             const newLists = [{status: 'success', subjects: action.payload.subjects}]
             return { 
                 ...state,
-                isFetchMore: action.payload.isFetchMore,
+                fetchDone: true,
                 comingSoon: {
+                    ...state.comingSoon,
                     status: 'success',
                     ... action.payload,
                     movieLists: action.payload.isFetchMore ? oldLists.concat(newLists) : newLists
@@ -80,7 +86,9 @@ export default (state=initState, action) => {
         case FETCH_COMING_ERROR: {
             return {
                 ...state,
+                fetchDone: true,
                 comingSoon: {
+                    ...state.comingSoon,
                     status: 'error'
                 }
             }
