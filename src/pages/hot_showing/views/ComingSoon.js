@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { fetchComingMovies } from '../actions.js';
+import { fetchComingMovies, leaveComing } from '../actions.js';
 import { connect } from 'react-redux';
 import MovieList from './MovieList';
 import withLoading from '../../../utils/withLoading.js';
@@ -21,10 +21,13 @@ class ComingSoon extends Component {
     componentDidMount() {
         this.props.Ref(this);
     }
+    componentWillUnmount() {
+        this.props.leaveComing(this.scrollTop);
+    }
     scrollToBottom(event) {
-        const scrollTop = event.target.scrollTop;
+        this.scrollTop = event.target.scrollTop;
         const targetHeight = (event.target.scrollHeight - event.target.clientHeight) * 4 / 5;
-        if (scrollTop >= targetHeight) {
+        if ( this.scrollTop >= targetHeight) {
             this.fetchMoreData();
         }
     }
@@ -41,7 +44,11 @@ class ComingSoon extends Component {
         this.dom = ref;
     }
     fetchData() {
-        this.props.getMovies();
+        if (this.props.movieLists.length<=0) {
+            this.props.getMovies();
+        } else {
+            this.dom.scrollTop = this.props.scrollTop;
+        }
     }
     render() {
         const { status, movieLists, count, start, total, isFetchMore } = this.props;
@@ -69,13 +76,15 @@ function mapStateToProps(state, ownProps) {
         count: state.hotShowing.comingSoon.count,
         start: state.hotShowing.comingSoon.start,
         total: state.hotShowing.comingSoon.total,
-        isFetchMore: state.hotShowing.isFetchMore
+        isFetchMore: state.hotShowing.isFetchMore,
+        scrollTop: state.hotShowing.comingSoon.scrollTop
     }
 }
 
 function mapDispatchToProps(dispatch, ownProps) {
     return {
-        getMovies: (start, isFetchMore)=> dispatch(fetchComingMovies(start, isFetchMore))
+        getMovies: (start, isFetchMore)=> dispatch(fetchComingMovies(start, isFetchMore)),
+        leaveComing: (scrollTop)=> dispatch(leaveComing(scrollTop))
     }
 }
 

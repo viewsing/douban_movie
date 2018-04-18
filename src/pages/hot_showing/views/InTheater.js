@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { fetchTheaterMovies } from '../actions.js';
+import { fetchTheaterMovies, leaveTheater } from '../actions.js';
 import { connect } from 'react-redux';
 import MovieList from './MovieList';
 import withLoading from '../../../utils/withLoading.js';
@@ -18,14 +18,26 @@ class InTheater extends Component {
         this.movieLists = [];
         this.scrollToBottom = Throttle(this.scrollToBottom, 100, 200).bind(this);
         this.fetchMoreData = this.fetchMoreData.bind(this);
+        this.getDom = this.getDom.bind(this);
     }
     componentDidMount() {
-        this.props.getMovies();
+        if (this.props.movieLists.length<=0) {
+            this.props.getMovies();
+        } else {
+            //如果已有数据，就是从详情返回列表，所以要复原原先的滚动位置
+            this.dom.scrollTop = this.props.scrollTop
+        }
+    }
+    componentWillUnmount() {
+        this.props.leaveTheater(this.scrollTop);
+    }
+    getDom(ref) {
+        this.dom = ref;
     }
     scrollToBottom(event) {
-        const scrollTop = event.target.scrollTop;
+        this.scrollTop = event.target.scrollTop;
         const targetHeight = (event.target.scrollHeight - event.target.clientHeight) * 4 / 5;
-        if (scrollTop >= targetHeight) {
+        if (this.scrollTop >= targetHeight) {
             this.fetchMoreData();
         }
     }
@@ -46,7 +58,7 @@ class InTheater extends Component {
         }
         
         return (
-            <section id="InTheater" onScroll={this.scrollToBottom} >
+            <section id="InTheater" ref={this.getDom} onScroll={this.scrollToBottom} >
                 {
                     status !== 'init' ? movieLists.map( function(movieList, index) {
                         return <LoadingMovieList key={index} subjects={movieList.subjects} status={movieList.status}/>
@@ -64,13 +76,15 @@ function mapStateToProps(state, ownProps) {
         count: state.hotShowing.inTheaters.count,
         start: state.hotShowing.inTheaters.start,
         total: state.hotShowing.inTheaters.total,
-        isFetchMore: state.hotShowing.isFetchMore
+        isFetchMore: state.hotShowing.isFetchMore,
+        scrollTop: state.hotShowing.inTheaters.scrollTop
     }
 }
 
 function mapDispatchToProps(dispatch, ownProps) {
     return {
-        getMovies: (start, isFetchMore)=> dispatch(fetchTheaterMovies(start, isFetchMore))
+        getMovies: (start, isFetchMore)=> dispatch(fetchTheaterMovies(start, isFetchMore)),
+        leaveTheater: (scrollTop) => dispatch(leaveTheater(scrollTop))
     }
 }
 

@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import InTheater from './InTheater.js';
 import ComingSoon from './ComingSoon.js';
+import { connect } from 'react-redux';
+import { changeTabTo } from '../actions.js';
 import Swiper from 'swiper';
 import 'swiper/dist/css/swiper.css';
 
@@ -10,9 +12,6 @@ import 'swiper/dist/css/swiper.css';
 class Container extends Component {
     constructor(props) {
         super(props);
-        this.state = {
-            activeIndex: 0
-        }
         this.firstToComing = true;
         this.Ref = this.Ref.bind(this);
         this.tabToComingSoon = this.tabToComingSoon.bind(this);
@@ -20,9 +19,10 @@ class Container extends Component {
     }
     componentDidMount(){
         this.mySwiper = new Swiper('.swiper-container', {
+            initialSlide: this.props.activeIndex,
             on:{   
                 slideChange: () => {
-                    this.setState({ activeIndex: this.mySwiper.activeIndex });
+                    this.mySwiper && this.props.changeTabTo(this.mySwiper.activeIndex);
                     window.scrollTo(0,0);
                 },
                 slideNextTransitionEnd: () => {
@@ -38,9 +38,6 @@ class Container extends Component {
         //ComingSoon实例，在swipe回掉函数里控制，在第一次进入时加载数据
         this.ComingSoon = ref;
     }
-    shouldComponentUpdate(nextProps, nextState) {
-        return this.state.activeIndex !== nextState.activeIndex;
-    }
     tabToHotShowing() {
         this.mySwiper.slidePrev();
     }
@@ -48,7 +45,7 @@ class Container extends Component {
         this.mySwiper.slideNext();
     }
     render(){
-        const activeIndex = this.state.activeIndex;
+        const {activeIndex} = this.props;
         return (
             <div id="hotShowing-container">
                 <div className="container-heading">
@@ -72,5 +69,18 @@ class Container extends Component {
     }
 }
 
+function mapStateToProps (state, ownProps) {
+    return {
+        activeIndex: state.hotShowing.activeIndex
+    }
+}
 
-export default Container;
+function mapDispatchToProps (dispatch, ownProps) {
+    return {
+        changeTabTo: (index) => {
+            dispatch(changeTabTo(index)) 
+        }
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Container);

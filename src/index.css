@@ -32,7 +32,7 @@ body {
 
 #footer {
     position: fixed;
-    z-index: 9999;
+    z-index: 2;
     background-color: #fff;
     border-top: 1px solid #e6e6e6;
     bottom: 0;
@@ -147,9 +147,13 @@ body {
 
 .movieListItem {
     display: flex;
+    text-decoration: none;
     justify-content: space-between;
     padding: .4rem;
     border-top: 1px solid #e6e6e6;
+}
+.movieListItem:hover {
+    text-decoration: none;
 }
 .movieListItem .moviePic img {
     width: 1.8rem;
@@ -183,4 +187,14 @@ body {
     padding: .1rem .2rem;
     border-radius: .1rem;
     text-decoration: none;
+}
+
+.movieDetail {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 3;
+    background-color: #fff;
 }

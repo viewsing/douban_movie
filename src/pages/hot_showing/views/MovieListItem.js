@@ -9,7 +9,7 @@ import { Link } from 'react-router';
 function MovieListItem ({id, title, images, directors, casts, collect_count, rating}) {
     const movieBuyColor = rating ? '#ff6e7e' : '#ffaf36';
     return (
-            <div className="movieListItem">
+            <Link className="movieListItem" to={'/movie_detail/' + id}>
                 <div className="moviePic">
                     <img src={images.small} alt="" />
                 </div>      
@@ -35,11 +35,11 @@ function MovieListItem ({id, title, images, directors, casts, collect_count, rat
                         {collect_count > 9999 ? (collect_count / 10000).toFixed(1) + '万' : collect_count }人
                         { rating ? '看过' : '想看'}
                     </p>
-                    <a href="#" className="goBuy" style={{ color: movieBuyColor, border: '1px solid '+ movieBuyColor }}>
+                    <span className="goBuy" style={{ color: movieBuyColor, border: '1px solid '+ movieBuyColor }}>
                         { rating ? '购票' : '想看'}
-                    </a>
+                    </span>
                 </div>
-            </div>
+            </Link>
     )
 }
 
