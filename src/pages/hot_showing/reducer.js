@@ -40,7 +40,7 @@ export default (state=initState, action) => {
                 inTheaters: {
                     ...state.inTheaters,
                     status: 'success',
-                    ... action.payload,
+                    ...action.payload,
                     movieLists: action.payload.isFetchMore ? oldLists.concat(newLists) : newLists
                 }
             }
@@ -78,7 +78,7 @@ export default (state=initState, action) => {
                 comingSoon: {
                     ...state.comingSoon,
                     status: 'success',
-                    ... action.payload,
+                    ...action.payload,
                     movieLists: action.payload.isFetchMore ? oldLists.concat(newLists) : newLists
                 }
             }

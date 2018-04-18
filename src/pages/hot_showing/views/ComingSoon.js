@@ -51,7 +51,7 @@ class ComingSoon extends Component {
         }
     }
     render() {
-        const { status, movieLists, count, start, total, fetchDone } = this.props;
+        const { status, movieLists, fetchDone } = this.props;
         //标记加载更多结束
         if (fetchDone) {
             this.fetching = false;

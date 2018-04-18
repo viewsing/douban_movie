@@ -16,7 +16,7 @@ function getStars (starsStr) {
     //返回的星星组件
     const retStars = [];
     //点亮星星数
-    const allStrNum = parseInt(starsStr[0]);
+    const allStrNum = parseInt(starsStr[0], 10);
     //总共五颗星
     let totalNum = 5;
     if (starsStr.length > 1) {
