@@ -37,6 +37,7 @@ class MovieDetail extends Component {
                                 <h2>{subject.title}</h2>
                                 <p>{subject.genres.push(subject.year) && subject.genres.join(' / ')}</p>
                                 <p>{'原名: '+subject.original_title}</p>
+                                <p>{'主演: '+subject.casts.map((cast)=>cast.name).join(' / ')}</p>
                             </div>
                             <div className="rightCol">
                                 <div className="rating">
@@ -56,23 +57,6 @@ class MovieDetail extends Component {
                             <p>
                                 {subject.summary}
                             </p>
-                        </div>
-                        <div className="casts card-padding">
-                            <p>影人</p>
-                            <p>
-                                {
-                                    subject.casts.map(function(cast, index){
-                                        return (<div key={index}>
-                                            <img src={cast.avatars.small} alt="影员照片"/>
-                                            <span>{cast.name}</span>
-                                        </div>)
-                                    })
-                                }
-                            </p>
-                        </div>
-                        <div className="photos card-padding">
-                            <p>剧照</p>
-                            <p></p>
                         </div>
                     </div>] : <div className="loading"></div>
                 }

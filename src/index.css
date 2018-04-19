@@ -406,6 +406,9 @@ body {
     display: flex;
     justify-content: space-between;
 }
+.movieDetail .info .rightCol {
+    flex-shrink: 0;
+}
 .movieDetail .info h2 {
     font-size: .5rem;
     font-weight: bold;
@@ -414,12 +417,13 @@ body {
 }
 .movieDetail .info p {
     font-size: .3rem;
-    line-height: 1.5;
+    line-height: 1.8;
     color: #a2a2a2;
 }
 
 .movieDetail .info .rating {
-    padding: .2rem .3rem;
+    padding: .2rem;
+    margin-left: .2rem;
     text-align: center;
     box-shadow: 0 0 .2rem .1rem #ddd;
 }
@@ -449,22 +453,5 @@ body {
 }
 .movieDetail .desc p:last-child {
     color: #494949;
-}
-.movieDetail .casts p:first-child {
-    color: #979797;
-    padding-bottom: .2rem;
-}
-.movieDetail .casts p:last-child {
-    color: #494949;
-}
-.movieDetail .casts img {
-    width: .3rem;
-    height: .5rem;
-}
-.movieDetail .photos p:first-child {
-    color: #979797;
-    padding-bottom: .2rem;
-}
-.movieDetail .photos p:last-child {
-    color: #494949;
+    text-indent: 1em;
 }
