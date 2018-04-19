@@ -1,14 +1,163 @@
+html {
+    color: #000;
+    background: #fff;
+    overflow-y: scroll;
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%
+}
+
+html * {
+    outline: 0;
+    -webkit-text-size-adjust: none;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0)
+}
+
+html,
+body {
+    font-family: sans-serif
+}
+
+body,
+div,
+dl,
+dt,
+dd,
+ul,
+ol,
+li,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+pre,
+code,
+form,
+fieldset,
+legend,
+input,
+textarea,
+p,
+blockquote,
+th,
+td,
+hr,
+button,
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+    margin: 0;
+    padding: 0
+}
+
+input,
+select,
+textarea {
+    font-size: 100%
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0
+}
+
+fieldset,
+img {
+    border: 0
+}
+
+abbr,
+acronym {
+    border: 0;
+    font-variant: normal
+}
+
+del {
+    text-decoration: line-through
+}
+
+address,
+caption,
+cite,
+code,
+dfn,
+em,
+th,
+var {
+    font-style: normal;
+    font-weight: 500
+}
+
+ol,
+ul {
+    list-style: none
+}
+
+caption,
+th {
+    text-align: left
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-size: 100%;
+    font-weight: 500
+}
+
+q:before,
+q:after {
+    content: ''
+}
+
+sub,
+sup {
+    font-size: 75%;
+    line-height: 0;
+    position: relative;
+    vertical-align: baseline
+}
+
+sup {
+    top: -.5em
+}
+
+sub {
+    bottom: -.25em
+}
+
+ins,
+a {
+    text-decoration: none
+}
+
 /* 高度设置 */
+
 html {
     height: 100%;
     word-break: break-all;
 }
+
 body {
     height: calc(100% - 2.5rem);
 }
+
 #root {
     height: 100%;
 }
+
 #searchBar {
     position: fixed;
     width: 100%;
@@ -55,6 +204,7 @@ body {
 }
 
 /* 全局字体大小设置 */
+
 * {
     font-size: 12px;
 }
@@ -74,18 +224,20 @@ body {
 }
 
 /* 遮罩设置 */
+
 .loading {
+    width: 1rem;
+    height: 1rem;
+    border-radius: .5rem;
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 1rem;
-    height: 1rem;
-    border-radius: .5rem;
     background: url(./static/loading.gif) center / 100% no-repeat;
 }
 
 /* 没有更多数据 */
+
 .noMoreData {
     height: 1rem;
     margin-top: -.5rem;
@@ -95,15 +247,19 @@ body {
 }
 
 /* 星星评分 */
+
 .star_score {
     display: inline-block;
     width: .4rem;
     height: .4rem;
 }
+
 /* app主体设置 */
+
 .appContent {
     height: 100%;
 }
+
 .appBody {
     margin-top: 1.2rem;
     height: 100%;
@@ -114,10 +270,12 @@ body {
 #hotShowing-container {
     height: 100%;
 }
+
 #hotShowing-container .container-heading {
     width: 100%;
     background-color: #fff;
 }
+
 #hotShowing-container .heading-item {
     display: inline-block;
     height: 1.2rem;
@@ -126,9 +284,11 @@ body {
     width: 50%;
     text-align: center;
 }
+
 #hotShowing-container .heading-item.active {
     border-bottom: 0.06rem solid #515151;
 }
+
 #hotShowing-container .swiper-container {
     width: 100%;
     height: calc(100% - 1.2rem);
@@ -139,6 +299,7 @@ body {
     height: 100%;
     overflow-y: scroll;
 }
+
 #ComingSoon {
     position: relative;
     height: 100%;
@@ -152,9 +313,7 @@ body {
     padding: .4rem;
     border-top: 1px solid #e6e6e6;
 }
-.movieListItem:hover {
-    text-decoration: none;
-}
+
 .movieListItem .moviePic img {
     width: 1.8rem;
     height: 2.7rem;
@@ -196,5 +355,116 @@ body {
     top: 0;
     left: 0;
     z-index: 3;
+    overflow-y: auto;
     background-color: #fff;
+}
+
+.movieDetail header {
+    width: 100%;
+    height: 1rem;
+    position: fixed;
+    top: 0;
+    z-index: 4;
+    line-height: 1rem;
+    display: flex;
+    color: #fff;
+    background-color: #030e23;
+    justify-content: space-between;
+}
+
+.movieDetail header * {
+    font-size: .5rem;
+}
+
+.movieDetail .goBack, .movieDetail .share {
+    padding: 0 .4rem;
+}
+
+.movieDetail .detail-body {
+    margin-top: 1rem;
+}
+
+.movieDetail .poster {
+    width: 100%;
+    height: 6rem;
+    display: flex;
+    background-color: #030e23;
+    justify-content: center;
+    align-items: center;
+}
+
+.movieDetail .poster img {
+    width: 3.6rem;
+    height: 5.25rem;
+}
+
+.movieDetail .card-padding {
+    padding: .5rem;
+}
+
+.movieDetail .info {
+    display: flex;
+    justify-content: space-between;
+}
+.movieDetail .info h2 {
+    font-size: .5rem;
+    font-weight: bold;
+    color: #48494b;
+    padding-bottom: .5rem;
+}
+.movieDetail .info p {
+    font-size: .3rem;
+    line-height: 1.5;
+    color: #a2a2a2;
+}
+
+.movieDetail .info .rating {
+    padding: .2rem .3rem;
+    text-align: center;
+    box-shadow: 0 0 .2rem .1rem #ddd;
+}
+.movieDetail .info .rating-text {
+    color: #d0d0d0;
+}
+.movieDetail .info .rating-score {
+    color: #494949;
+    font-weight: bold;
+    font-size: .3rem;
+}
+
+.movieDetail .chooseSeat {
+    font-size: .4rem;
+    border-top: 1px solid #e5e5e5;
+    border-bottom: 1px solid #e5e5e5;
+    color: #979797;
+}
+.movieDetail .chooseSeat .angleRight {
+    float: right;
+    margin-right: .5rem;
+    padding-top: .1rem;
+}
+.movieDetail .desc p:first-child {
+    color: #979797;
+    padding-bottom: .2rem;
+}
+.movieDetail .desc p:last-child {
+    color: #494949;
+}
+.movieDetail .casts p:first-child {
+    color: #979797;
+    padding-bottom: .2rem;
+}
+.movieDetail .casts p:last-child {
+    color: #494949;
+}
+.movieDetail .casts img {
+    width: .3rem;
+    height: .5rem;
+}
+.movieDetail .photos p:first-child {
+    color: #979797;
+    padding-bottom: .2rem;
+}
+.movieDetail .photos p:last-child {
+    color: #494949;
 }

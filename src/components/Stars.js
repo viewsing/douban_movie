@@ -1,7 +1,7 @@
 import React from 'react';
-import halfStar from '../../../static/half_star.svg';
-import allStar from '../../../static/all_star.svg';
-import negtiveStar from '../../../static/negtive_star.svg';
+import halfStar from '../static/half_star.svg';
+import allStar from '../static/all_star.svg';
+import negtiveStar from '../static/negtive_star.svg';
 
 /**
  * 功能是展示星星

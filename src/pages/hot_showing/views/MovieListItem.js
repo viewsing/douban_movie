@@ -1,5 +1,5 @@
 import React from 'react';
-import Stars from './Stars.js';
+import Stars from '../../../components/Stars.js';
 import { Link } from 'react-router';
 
 /**
