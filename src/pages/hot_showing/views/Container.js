@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import InTheater from './InTheater.js';
+import { view as SearchBar } from '../../../components/searchBar';
 import ComingSoon from './ComingSoon.js';
 import { connect } from 'react-redux';
 import { changeTabTo } from '../actions.js';
@@ -48,6 +49,7 @@ class Container extends Component {
         const {activeIndex} = this.props;
         return (
             <div id="hotShowing-container">
+                <SearchBar/>
                 <div className="container-heading">
                     <div className={ (activeIndex === 0 ? 'active ' : '') + 'heading-item inTheater-heading' }
                          onClick={this.tabToHotShowing}>正在热映</div>

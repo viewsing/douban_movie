@@ -158,16 +158,21 @@ body {
     height: 100%;
 }
 
-#searchBar {
-    position: fixed;
-    width: 100%;
-    height: 1.2rem;
-    z-index: 2;
-    background-color: #fff;
-    top: 0;
+#appContent {
+    height: 100%;
 }
 
-#searchBar .searchPanel {
+#appBody {
+    height: 100%;
+}
+
+.searchBar {
+    width: 100%;
+    height: 1.2rem;
+    background-color: #fff;
+}
+
+.searchBar .searchPanel {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -240,8 +245,6 @@ body {
 
 .noMoreData {
     height: 1rem;
-    margin-top: -.5rem;
-    line-height: 1rem;
     text-align: center;
     color: #8a8a8a;
 }
@@ -252,17 +255,6 @@ body {
     display: inline-block;
     width: .4rem;
     height: .4rem;
-}
-
-/* app主体设置 */
-
-.appContent {
-    height: 100%;
-}
-
-.appBody {
-    margin-top: 1.2rem;
-    height: 100%;
 }
 
 /* 具体页面设置 */
@@ -312,6 +304,12 @@ body {
     justify-content: space-between;
     padding: .4rem;
     border-top: 1px solid #e6e6e6;
+}
+
+/* 加载更多时，loading的margin */
+.movieListItem + .loading-container {
+    margin-top: -.5rem;
+    margin-bottom: .3rem;
 }
 
 .movieListItem .moviePic img {

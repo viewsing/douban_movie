@@ -3,7 +3,7 @@ import searchIcon from '../../../static/search.svg';
 
 function SearchBar (props) {
     return (
-        <div id="searchBar">
+        <div className="searchBar">
             <div className="searchPanel">
                 <span style={{
                     background: 'url(' + searchIcon + ') 0 / 100% no-repeat',
