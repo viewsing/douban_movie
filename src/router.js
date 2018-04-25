@@ -6,6 +6,7 @@ import App from './App';
 import { view as HotShowing } from './pages/hot_showing';
 import { view as SearchMovie } from './pages/search_movie';
 import { view as MovieDetail } from './pages/movie_detail';
+import { view as Search } from './pages/search';
 
 const history = syncHistoryWithStore(browserHistory, store);
 
@@ -17,6 +18,7 @@ function AppRouter(props) {
                 <Route path="hot_showing" component={HotShowing} />
                 <Route path="search_movie" component={SearchMovie} />
                 <Route path="movie_detail/:id" component={MovieDetail} />
+                <Route path="search" component={Search} />
             </Route>
         </Router>
     )

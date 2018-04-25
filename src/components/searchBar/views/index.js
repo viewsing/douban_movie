@@ -1,9 +1,10 @@
 import React from 'react';
+import { Link } from 'react-router';
 import searchIcon from '../../../static/search.svg';
 
 function SearchBar (props) {
     return (
-        <div className="searchBar">
+        <Link to="/search" className="searchBar">
             <div className="searchPanel">
                 <span style={{
                     background: 'url(' + searchIcon + ') 0 / 100% no-repeat',
@@ -12,7 +13,7 @@ function SearchBar (props) {
                     height: '.6rem'
                 }}></span>&nbsp;电影 / 电视剧 / 影人
             </div>
-        </div>
+        </Link>
     )
 }
 export default SearchBar;

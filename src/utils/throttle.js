@@ -16,7 +16,7 @@ export default (callback, delay, mustRunDelay) => {
             clearTimeout(timer);
             timer = setTimeout(function(){
                 callback.apply(context, [event].concat(args) );
-            }, 100);
+            }, delay);
         }
     }
 }

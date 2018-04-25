@@ -21,9 +21,9 @@ export const fetchTheaterError = (error) => ({
 export const fetchTheaterMovies = (start, isFetchMore) => {
     return (dispatch) => {
         //分页参数
-        let queryStr = '';
+        let queryStr = '?apikey=0b2bdeda43b5688921839c8ecb20399b';
         if (start) {
-            queryStr = '?start=' + start;
+            queryStr += '&start=' + start;
         }
         const apiUrl = 'movie/in_theaters' + queryStr;
 
@@ -62,9 +62,9 @@ export const fetchComingError = (error) => ({
 export const fetchComingMovies = (start, isFetchMore) => {
     return (dispatch) => {
         //分页参数
-        let queryStr = '';
+        let queryStr = '?apikey=0b2bdeda43b5688921839c8ecb20399b';
         if (start) {
-            queryStr = '?start=' + start;
+            queryStr += '&start=' + start;
         }
         const apiUrl = 'movie/coming_soon' + queryStr;
 
