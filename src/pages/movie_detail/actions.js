@@ -1,5 +1,5 @@
 import { FETCH_MOVIE_DETAIL, FETCH_MOVIE_STARTED, FETCH_MOVIE_SUCCESS, FETCH_MOVIE_ERROR } from './actionTypes.js';
-import myFetch from '../../utils/myFetch.js';
+import {myFetch} from '../../utils/myFetch.js';
 
 export const fetchMovieDetail = (id) => {
     return function(dispatch){

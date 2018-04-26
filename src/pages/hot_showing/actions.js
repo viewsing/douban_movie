@@ -1,7 +1,7 @@
 import { FETCH_THEATER_STARTED, FETCH_THEATER_SUCCESS, FETCH_THEATER_ERROR, LEAVE_THEATER,
          FETCH_COMING_STARTED, FETCH_COMING_SUCCESS, FETCH_COMING_ERROR, LEAVE_COMING,
          CHANGE_TAB_TO } from './actionTypes.js';
-import myFetch from '../../utils/myFetch.js';
+import {myFetch} from '../../utils/myFetch.js';
 
 export const fetchTheaterStarted = (result) => ({
     type: FETCH_THEATER_STARTED,

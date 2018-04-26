@@ -1,5 +1,5 @@
 import { SEARCHSTARTED, SEARCHSUCCESS, SEARCHERROR, LEAVESEARCH } from './actionTypes.js';
-import myFetch from '../../utils/myFetch.js';
+import {myFetch} from '../../utils/myFetch.js';
 
 export const searchMovieStarted = () => ({
     type: SEARCHSTARTED

@@ -3,7 +3,7 @@ import axios from 'axios';
 /**
  * 请求数据，在sessionStorage有数据时有限从storage获取
  */
-export default (url, options={}, noCache) => {
+export const myFetch = (url, options={}, noCache) => {
     let config = {
         method: 'get',
         url: url,
@@ -33,4 +33,13 @@ export default (url, options={}, noCache) => {
         });
     }
 
+}
+
+export const myFetchAll = (successFunc, errorFunc, ...urls) => {
+    const promiseArr = urls.map(function(url){
+        return myFetch(url)
+    });
+    return axios.all(promiseArr)
+        .then(axios.spread(successFunc))
+        .catch(errorFunc);
 }

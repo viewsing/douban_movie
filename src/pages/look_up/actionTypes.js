@@ -1,0 +1,3 @@
+export const LOOKUPSTARTED = 'STARTED/LOOKUP';
+export const LOOKUPSUCCESS = 'SUCCESS/LOOKUP';
+export const LOOKUPERROR = 'ERROR/LOOKUP';
