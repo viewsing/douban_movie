@@ -23,7 +23,7 @@ class MovieDetail extends Component {
         const { status, subject} = this.props;
         console.log(subject);
         return (
-            <section className="movieDetail">
+            <section id="movieDetail">
                 {
                     status === 'success' ? [<header key="1">
                         <span className="goBack" onClick={this.goBack}><FontAwesomeIcon icon={arrowLeft}/></span>
